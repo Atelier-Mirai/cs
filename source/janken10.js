@@ -1,11 +1,17 @@
 // 厳格モードを呼び出すことで 潜在的なバグを減らす
 'use strict';
 
-// イベントリスナの設定
+// HTML文書から、IDがplayである要素(=開始ボタン)を取得し、
+// play_button という変数に格納(代入)する。
 const playButton = document.getElementById("play");
-playButton.addEventListener('click', jankenHandler);
 
-// じゃんけんの勝ち負けの結果を表示する関数
+// イベントリスナの追加
+// playButtonがクリックされたときに、
+// jankenHandler という関数が呼ばれるようにする。
+playButton.addEventListener("click", jankenHandler);
+
+// jankenHandler 関数
+// じゃんけんの勝ち負けの結果を表示する
 function jankenHandler(event) {
   alert("あなたの勝ちです!");
 }
