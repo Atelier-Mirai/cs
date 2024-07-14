@@ -13,8 +13,8 @@
  : @<href>{https://prog-8.com/, Progate}
    紙の本よりも直感的で、動画よりも学びやすい、「スライド学習」を採用した学習サイト。自分のペースで学習できること、復習しやすいことが強みです。
 
- : @<href>{https://paiza.jp/works/courses, paiza}
-   1本3分の動画と練習問題で効率的に学ぶ、オンラインでプログラミングしながらスキルアップできる、プログラミング入門学習コンテンツです。
+#@# : @<href>{https://paiza.jp/works/courses, paiza}
+#@#   1本3分の動画と練習問題で効率的に学ぶ、オンラインでプログラミングしながらスキルアップできる、プログラミング入門学習コンテンツです。
 
 #@# : @<href>{https://paiza.jp/codechronicle/, コードクロニクル}
 #@#   RPGを楽しみながら、プログラミングの世界に触れることができます。
@@ -38,7 +38,7 @@
 === @<href>{https://www.apple.com/jp/macbook-air/, MacBook Air}
     美しく洗練されたデザイン、心地よく優れた利用者体験を提供するmacOSのもと、プログラミングを始める方への最初の一台として最適な機種です。
 
-=== @<href>{https://atom.io/, 21世紀のプログラマの為のテキストエディタ Atom}
+=== @<href>{https://pulsar-edit.dev, コミュニティ主導の高性能テキストエディタ pulsar}
     プログラマが心地よくコーディングできるよう、必要な機能が搭載されています。始めての方は設定不要で初日から使え、熟練者は深部まで調整可能です。
 
 === @<href>{https://www.mozilla.org/, Mozilla謹製ブラウザ Firefox}

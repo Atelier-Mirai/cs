@@ -7,7 +7,7 @@ starter:
   ## * pbook: 印刷用のモノクロPDFを出力。printing bookの略。
   ## * ebook: 電子用のカラーPDFを出力。electric bookの略。
   ## * tablet: タブレット用のカラーPDFを出力。
-  target: ebook
+  target: pbook
 
   ## ドラフトモード。trueなら画像を読み込むかわりに枠を表示する。
   ## 図やスクリーンショットが多くてコンパイルに時間がかかるときに便利。
@@ -27,12 +27,12 @@ starter:
   ## フォントサイズ
   ## ・A5なら「9pt」、B5なら「10pt」を推奨
   ## ・初心者向け入門書なら大きめにして、A5「10pt」、B5「11pt」を推奨
-  fontsize:  9pt          # 9pt or 10pt
+  fontsize:  10pt          # 9pt or 10pt
 
   ## 本文幅
   ## ・A5 9ptなら「38zw」か「39zw」、A5 10ptなら「35zw」を推奨
   ## ・B5 10ptなら「44zw」か「45zw」、B5 11ptなら「41zw」を推奨
-  textwidth: 46zw          # 全角の文字数で指定
+  textwidth: 44zw          # 全角の文字数で指定
 
   ## 本文のフォント（注：実験的）
   ## （Notoフォントが前提なので、Docker環境が必要。MacTeXでは使わないこと）
@@ -48,7 +48,7 @@ starter:
   ## ・ファイル名の後ろに `*` をつけると、上下左右の塗り足し部分が除かれる。
   ## ・必要なら配列を使って複数ファイルを指定可能（例： [a.pdf, b.pdf]）。
   # frontcover_pdffile: cover_a5.pdf   # 表表紙（電子用のみ、印刷用にはつかない）
-  frontcover_pdffile: hyoshi_amazon.pdf   # 表表紙（電子用のみ、印刷用にはつかない）
+  frontcover_pdffile: hyoshi.pdf   # 表表紙（電子用のみ、印刷用にはつかない）
   #frontcover_pdffile: cover.pdf<2>* # （ページ番号を指定し、塗り足しを除く場合）
   backcover_pdffile:  null           # 裏表紙（電子用のみ、印刷用にはつかない）
   titlepage_pdffile:  null           # 大扉（印刷用・電子用どちらにもつく）
@@ -58,8 +58,7 @@ starter:
 
   ## ノンブル（1枚目からの通し番号）の設定
   ## （注：印刷用PDFのときのみ有効、電子用PDFではノンブルはつかない）
-  # nombre:               on           # on ならノンブルをつける
-  nombre:               off           # on ならノンブルをつける
+  nombre:               on           # on ならノンブルをつける
   nombre_sidemargin:    0.5mm        # ページ左右からのマージン幅
   nombre_bottommargin:  2.0mm        # ページ下からのマージン高
   nombre_fontcolor:     gray         # 'gray' or 'black'

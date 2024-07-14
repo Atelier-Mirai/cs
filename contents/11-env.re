@@ -6,24 +6,22 @@
 //}
 #@#
 プログラミングを行うために整える道具は二つ、「エディタ」と「ブラウザ」です。
-@<small>{（もちろん「コンピュータ」も必要です。iPadやiPhoneでプログラミングできる環境(cloud9やpaiza.ioなど)もありますが、Mac や Linux, Windows が動くデスクトップやラップトップコンピュータがお勧めです。）}
+@<small>{（もちろん「コンピュータ」も必要です。iPadやiPhoneでプログラミングできる環境として @<href>{https://aws.amazon.com/jp/cloud9/, cloud9} や @<href>{https://paiza.io/ja, paiza}、 @<href>{https://codepen.io,CodePen}などもありますが、Mac や Linux, Windows が動くデスクトップやラップトップコンピュータがお勧めです。）}
 
-エディタとは、プログラミングが快適に行えるよう様々な支援機能を備えたコーディングのためのソフトウェアです。さまざまなエディタが提供されていますが、ここでは、 @<code>{@<ruby>{Pulsar,パルサー}} をご紹介いたします。
+エディタとは、プログラミングが快適に行えるよう様々な支援機能を備えたコーディングのためのソフトウェアです。さまざまなエディタがありますが、ここでは @<code>{@<ruby>{Pulsar,パルサー}} をご紹介いたします。
 
 「ブラウザ」は、ウェブサイトを閲覧するためのソフトウェアです。自分の書いたコードの詳細を確認する為の「開発者ツール」や、iPhoneやiPadなど異なる端末での表示結果を確認する機能も備わっています。さまざまなブラウザがありますが、ここでは @<code>{@<ruby>{Firefox,ファイヤフォックス}} をご紹介いたします。
 
 //blankline
-@<small>{(他にも、ソースコードのバージョン管理システム(Git, GitHub)や、画像が編集ソフト(Affinity Photo, Affinity Designなど)など、サイト作成の為の様々なツールがございますので、適宜学習されて下さい。)}
+@<small>{他にも、ソースコードのバージョン管理システム(Git, GitHub)や、画像編集ソフト(Affinity Photo, Affinity Designなど)など、サイト作成の為の様々なツールがございますので、適宜学習されて下さい。}
 
 == コミュニティ主導の高性能エディタ @<code>{@<ruby>{Pulsar,パルサー}}
 
 //sideimage[pulsar_community][50mm][sep=5mm, side=R]{
-@<ruby>{Atom,アトム} は 21世紀の高性能エディタ として @<ruby>{GitHub,ギットハブ} により提供されていたエディタです。 Microsoft の買収により開発が滞りがちとなり、12月15日で提供終了となりました。Atomの遺産を受け継ぎ、コミュニティ有志により開発、提供されているエディタが、今回ご紹介する @<ruby>{Pulsar,パルサー}です。
+@<ruby>{Atom,アトム} は 「21世紀の高性能エディタ」 として @<ruby>{GitHub,ギットハブ} により提供されていたエディタです。 Microsoft の買収により開発が滞りがちとなり、ついに提供終了となりました。Atomの遺産を受け継ぎ、コミュニティ有志により開発、提供されているエディタが、今回ご紹介する @<ruby>{Pulsar,パルサー}です。
 
 @<code>{Pulsar} の 公式サイトは @<href>{https://pulsar-edit.dev/} です。
 //}
-
-#@# //image[pulsar_community][][width=65%]
 
 === ダウンロード
 
@@ -32,6 +30,8 @@
 //image[pulsar_download][][width=85%]
 
 Linux / macOS / Windows のそれぞれのOS用のソフトウェアが用意されています。
+
+//clearpage
 
 === Mac
 Macをお使いでしたら Apple Silicon または Intel 用の dmg ファイルをダウンロードします。
@@ -45,8 +45,7 @@ Windowsをお使いでしたら Setup をクリックしてダウンロードし
 
 ダウンロードが完了したら、落としたファイルをダブルクリックして、インストールして下さい。
 
-インストールしたPulsarは現在開発中の為、「署名」がされておりません。実行すると「WindowsはあなたのPCを保護した」旨のメッセージが表示されますので、「詳細」→「実行」をクリックすることで、Pulsarを立ち上げることが出来ます。
-次回以降は、他のアプリと同様に起動できます。
+@<small>{(実行すると「WindowsはあなたのPCを保護した」旨のメッセージが表示されます。「詳細」→「実行」をクリックすることで、Pulsarを起動出来ます。次回以降は、他のアプリと同様に起動できます。)}
 
 === お勧めプラグイン
 Pulsar はそのままでも十分高機能に使えるテキストエディタです。そして有志の方により、多くの「プラグイン」が提供されています。
@@ -54,15 +53,18 @@ Pulsar はそのままでも十分高機能に使えるテキストエディタ�
 //footnote[1][出典：IT用語辞典]
 
 プラグインのことを、Pulsar では、「パッケージ」と呼んでいます。
-たくさんのパッケージがありますが、いくつかお勧めをご紹介いたします。
+たくさんのパッケージの中からお勧めをご紹介いたします。
 
  1. メニューバーや設定画面などを日本語化 @<code>{japanese-menu}
  1. カラーピッカー @<code>{color-picker}
  1. CSSの色指定(@<code>{#ffffff})を背景色に表示 @<code>{pigments}
  1. ファイルの種類に応じたアイコンを表示 @<code>{file-icons}
+ 1. 自動再読み込み機能を備えた小さな開発サーバー@<code>{atom-live-server-plus}
+ 1. カーソルがある行を強調表示 @<code>{highlight-line}
  1. カーソルがある列を強調表示 @<code>{highlight-column}
  1. 選択箇所を強調表示 @<code>{selection-highlight}
- 1. AIによるコード補完機能 @<code>{tabnine}
+ 1. @<code>{=(イコール)}の位置を整える @<code>{atom-alignment}
+ 1. HTML, CSSが素早く入力できる @<code>{@<ruby>{Emmet,エメット}}
 
 それでは、インストールしていきましょう。
 
@@ -83,20 +85,74 @@ Pulsar はそのままでも十分高機能に使えるテキストエディタ�
 
 //blankline
 
-この他、お勧めのパッケージを @<href>{https://zenn.dev/atelier_mirai/articles/c3ed79af5ba395, RailsでのWebアプリ開発に愛用している Pulsar プラグイン} でご紹介しています。
+#@# この他、お勧めのパッケージを @<href>{https://zenn.dev/atelier_mirai/articles/c3ed79af5ba395, RailsでのWebアプリ開発に愛用している Pulsar プラグイン} でご紹介しています。
+#@#
+#@# //blankline
 
-////blankline
-
-//sideimage[pulsar_package_half][65mm][sep=5mm, side=R]{
+//sideimage[pulsar_package_half][55mm][sep=5mm, side=R]{
 また、有志の方々が創られたさまざまなパッケージが @<href>{https://web.pulsar-edit.dev} で公開されています。ご自身の使いやすいエディタに育てていって下さい。
 //}
 
 #@# @<fn>{plugin_install_error}
 #@# //footnote[plugin_install_error][Pulsarは開発中の為、ネットワークの状況等によって、プラグインのインストールに失敗することがあります。翌日に行うなど、時間をおいて実行してみて下さい。]
 
+== @<ruby>{Pulsar,パルサー} の追加設定
+
+=== @<ruby>{Emmet,エメット} を使う為に
+
+@<code>{Emmet}を使うと、HTML, CSSが素早く入力できるようになります。
+その為の設定を行います。
+
+@<code>{Ctrl + @<ruby>{,,カンマ}} を押すと、テキストエディタ @<ruby>{Pulsar,パルサー} の設定画面が開きます。
+//image[config][][width=55%]
+
+右下の「設定フォルダを開く」ボタンを押すと、別のPulsarの画面が現れます。Pulsarの様々な設定ファイルを参照したり、編集したりすることができます。
+
+@<file>{keymap.cson} は、「キーマップ」という名称の通り、様々なキーの組み合わせ、割り当てを変更する為の設定ファイルです。
+
+//image[keymap][][width=55%]
+
+@<code>{Emmet} を使いやすくする為のキーの割り当てをこのファイルの中に記述します。以下のように記述してください。
+
+//list[][keymap.cson]{
+'.editor:not(.mini)':
+  'ctrl-e': 'editor:move-to-end-of-line'
+'atom-text-editor:not([mini])':
+  'ctrl-,': 'emmet:expand-abbreviation'
+'.platform-darwin atom-text-editor:not([mini])':
+  'ctrl-d': 'unset!'
+//}
+
+@<href>{https://raw.githubusercontent.com/Atelier-Mirai/pulsar_config/master/keymap.cson} より、コピーすることも出来ます。
+
+=== スニペットの登録
+
+「スニペット」とは、「コードの断片」を指す言葉です。よく使うHTMLやCSSのコードなどを登録しておくと、便利です。スニペットの登録は @<file>{snippets.cson} に行います。
+
+//image[snippets][][width=55%]
+
+@<code>{html}とタイプすることで、次のように入力されるなど、いろいろ登録しています。
+
+//list[][]{
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    $1
+  </body>
+</html>
+//}
+
+@<href>{https://raw.githubusercontent.com/Atelier-Mirai/pulsar_config/master/snippets.cson}より、コピーして貼り付けてください。
+
+また、プログラムを作っていく中で、よく使うコードもあると思います。そんな時はスニペットに登録して、快適なプログラミングを楽しみましょう。
 
 //clearpage
-
 
 == セキュリティ重視のブラウザ @<code>{@<ruby>{Firefox,ファイヤフォックス}}
 @<code>{Firefox} は、@<href>{https://www.mozilla.org/ja/firefox/new/, 公式サイト} より、ダウンロードできます。
@@ -106,8 +162,6 @@ Pulsar はそのままでも十分高機能に使えるテキストエディタ�
 
   「Firefox をダウンロード」ボタンを押すとダウンロードが始まるので、落としたファイルをダブルクリックして、インストールしてください。
 //}
-
-#@# //image[firefox_download][Firefox公式サイト][width=80%]
 
 == 基本的な開発方法
 
@@ -124,8 +178,6 @@ Pulsar と Firefox を導入できたので、ウェブサイトの基本的な�
 作業ディレクトリの作成方法や、Pulsar や Firefox の簡単な使い方の紹介です。 @<fn>{mac}
 #@# @<fn>{atom_book}
 //footnote[mac][Mac利用者向けです。Windowsは適宜読み替えてください。]
-
-#@# //footnote[atom_book][@<href>{https://books.oiax.jp/items/atom, テキストエディタAtom入門} もお勧めです。]
 
 //sideimage[study][55mm][sep=5mm,side=R]{
  - 0. @<code>{Users}@<code>{/利用者名}ディレクトリの直下に、 @<code>{projects}ディレクトリを作成します。 @<br>{} @<code>{projects}ディレクトリには、自分が作成する様々なプロジェクト(案件)を格納する為のディレクトリです。良く使う為、 @<code>{Finder}のサイドバーに登録すると便利です。

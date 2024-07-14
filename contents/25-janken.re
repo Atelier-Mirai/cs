@@ -9,11 +9,11 @@
 利用者に心地よく使ってもらえるよう、HTMLを追記し、CSSを導入したことで、綺麗な意匠を実現しました。
 美しい見栄えになったことで、創作意欲も湧きます。
 
-この章では次の四点を実装し、遂にじゃんけんゲームが完成を迎えます。
+この章では次の三点を実装し、遂にじゃんけんゲームが完成を迎えます。
 
   1. プレイヤーがどの手を出すのか、今までは、0, 1, 2 と、数字で入力していました。より人に分かりやすい、グーチョキパーの3つのボタンを用意し、それを押すことで、プレイヤーが手を選べるようにします。
   2. 今までは、コンピュータがどの手を出したのか、表示する機能がありませんでした。グーチョキパーどれを出しているのか明示し、アニメーション機能も実装します。
-  4. ○勝○敗と、今までの勝敗を表示できるようにします。
+  3. ○勝○敗と、今までの勝敗を表示できるようにします。
 #@# 5. 開始ボタンを分かりやすくするために、色を付け、大きくします。
 #@#   6. じゃんけんを知らない人はいないとは思いますが、簡単な紹介文とWikipediaへのリンクを用意します。
 #@#   7. じゃんけんゲームを見る端末はさまざまです。iPhoneで見る人もいますし、Macで見る人もいます。さまざまな端末で好ましい見た目を提供できるよう「レスポンシブデザイン」を行っていきます。
@@ -23,28 +23,31 @@
 == プレイヤーの手の取得と コンピュータの手の表示
 
 === プレイヤーの手の取得
+
+これまでは、数値入力枠の中にプレイヤーが0, 1, 2の数字を入力することによって、グーチョキパーを得ていました。そのためのコードが次のコードでした。
+
 //list[][janken.js]{
 // player の手を取得
-const jankenInputBox = document.getElementById("player_hand_type");
-let player = parseInt(jankenInputBox.value);
+const inputBox = document.getElementById("player_hand_type")
+let player = Number(inputBox.value)
 //}
 
-これまでは、数値入力枠の中に利用者が0, 1, 2の数字を入力することによって、グーチョキパーを得ていました。今回より利用者に分かりやすいよう「UI/UX」の改善を図ったので、グーチョキパー、どのボタンが押されたのか取得する必要があります。
+今回より利用者に分かりやすいよう「UI/UX」の改善を図ったので、グーチョキパー、どのボタンが押されたのか取得する必要があります。
 そのため、次のように書き換えましょう。
 
 //list[][janken.js]{
 const guu_button   = document.getElementById("guu");
 const choki_button = document.getElementById("choki");
 const paa_button   = document.getElementById("paa");
-guu_button.addEventListener('click', jankenHandler);
-choki_button.addEventListener('click', jankenHandler);
-paa_button.addEventListener('click', jankenHandler);
+guu_button.addEventListener("click", jankenHandler);
+choki_button.addEventListener("click", jankenHandler);
+paa_button.addEventListener("click", jankenHandler);
 //}
 
 @<code>{document.getElementById("guu")} で、グーボタン要素を取得します。
 そして、プログラム内で扱いやすいよう、 @<code>{guu_button} という変数に代入します。この後、 @<code>{guu_button} という名前で呼ぶことで、利用者が押したボタンの値を取得します。
 
-@<code>{guu_button.addEventListener('click', jankenHandler);}
+@<code>{guu_button.addEventListener("click", jankenHandler);}
 では、@<code>{click} イベントを聴取する関数として @<code>{jankenHandler} を設定しています。
 これで、三つのボタンそれぞれが押されたら、ともに @<code>{jankenHandler} 関数が呼ばれるようになりました。
 //blankline
@@ -61,12 +64,12 @@ function jankenHandler(event) {
 
 @<code>{event.target.value} と書くことで、 @<code>{<button id="guu" value="0"></button>} と書かれていた @<code>{value} 属性の値 @<code>{"0"} が取得できます。
 
-@<code>{parseInt}は、文字列としての@<code>{"0"}を解析(@<code>{parse})し、整数値 @<code>{0}を返す関数です。
+@<code>{Number}は、文字列としての@<code>{"0"}を、整数値 @<code>{0}に変換する関数です。
 
 これで、グーボタンを押した時は @<code>{0}、チョキボタンを押した時は @<code>{1}, パーボタンを押した時は @<code>{2} が、@<code>{player}変数に格納されます。
 
 //list[][]{
-const player = parseInt(event.target.value);
+const player = Number(event.target.value)
 //}
 
 === コンピュータの手の表示
@@ -80,24 +83,24 @@ const player = parseInt(event.target.value);
 
 //list[][]{
 // コンピュータの手を無作為に決定する
-computer = rand(0, 2);
+computer = rand(0, 2)
 // コンピュータの手の画像を動的に変更する
-document.getElementById('computer_hand_type').src =
-        ["guu.png", "choki.png", "paa.png"][computer];
+document.getElementById("computer_hand_type").src =
+        ["guu.png", "choki.png", "paa.png"][computer]
 //}
 
 一行目は以前に触れた乱数でコンピュータの手を決定しています。二行目を解説します。
 
-@<code>{document.getElementById('computer_hand_type')} で、HTMLファイルに書いた イメージ要素 を取得します。
+@<code>{document.getElementById("computer_hand_type")} で、HTMLファイルに書いた イメージ要素 を取得します。
 @<code>{img} 変数には、 @<code>{<img id="computer_hand_type" src="guu.png">} が入っています。
  @<code>{src="guu.png"} と書いたので、グーの画像が表示されていました。
 
-@<code>{const img = document.getElementById('computer_hand_type');} として、取得した要素を @<code>{img} という変数に格納します。そして取得した @<code>{img} 要素の @<code>{src} 属性を @<code>{choki.png} にすればチョキの画像を、 @<code>{paa.png} にすればパーの画像を表示させることができます。
+@<code>{const img = document.getElementById("computer_hand_type")} として、取得した要素を @<code>{img} という変数に格納します。そして取得した @<code>{img} 要素の @<code>{src} 属性を @<code>{choki.png} にすればチョキの画像を、 @<code>{paa.png} にすればパーの画像を表示させることができます。
 
 JavaScript では、取得した要素の属性をいろいろ操作することができます。画像を変更するには、次のように書きます。
 
 //list[][]{
-  img.src = "choki.png";
+  img.src = "choki.png"
 //}
 
 ==== 配列
@@ -109,21 +112,19 @@ JavaScript では、取得した要素の属性をいろいろ操作すること
 じゃんけんの手の画像の集まり（配列）として、 @<code>{images} という変数を宣言し、初期値として @<code>{"guu.png", "choki.png", "paa.png"} 三つの画像名があるようにします。
 
 //list[][じゃんけん画像配列の宣言]{
-const images = ["guu.png", "choki.png", "paa.png"];
+const images = ["guu.png", "choki.png", "paa.png"]
 //}
 
 @<code>{const images = [];} と書くと、中身が空っぽの配列を作成することができます。
-@<code>{const images = ["guu.png", "choki.png", "paa.png"]} と書くと、 @<code>{配列 images} の中に、 @<code>{"guu.png", "choki.png", "paa.png"} の三つの要素があるようになります。@<fn>{array}
+@<code>{const images = ["guu.png", "choki.png", "paa.png"]} と書くと、 @<code>{配列 images} の中に、 @<code>{"guu.png", "choki.png", "paa.png"} の三つの要素があるようになります。
 
-//footnote[array][容器だけで中身は空っぽの幕の内弁当と、おかずとしてグーチョキパーの三つが入っている幕の内弁当を想像すると分かりやすいでしょうか。]
+#@# //footnote[array][容器だけで中身は空っぽの幕の内弁当と、おかずとしてグーチョキパーの三つが入っている幕の内弁当を想像すると分かりやすいでしょうか。]
 
 ==== 配列内の要素の指定法
 
 配列内の各要素を指定するには、配列名の後に @<code>{[何番目かを指示する数字]} と書きます。この「何番目かを指示する数字」のことを、@<B>{添字(そえじ)}と呼びます。
 
-配列の要素は、 @<code>{0, 1, 2} と  @<code>{0} から数え始めますので、 @<code>{images[0]} と書くと、 @<code>{"guu.png"} を指定でき、 @<code>{images[1]} と書くと、 @<code>{"choki.png"} を指定できます。
-
-逆に、@<code>{"paa.png"}が欲しい時には、@<code>{images[2]} と書くと良いです。
+配列の要素は、 @<code>{0, 1, 2} と  @<code>{0} から数え始めますので、 @<code>{images[0]} と書くと@<code>{"guu.png"} を指定でき、@<code>{images[1]} と書くと@<code>{"choki.png"} を指定できます。逆に、@<code>{"paa.png"}が欲しい時には、@<code>{images[2]} と書くと良いです。
 
 配列はとってもよく使う基礎的な@<B>{データ構造}で、少し大きなプログラムでは不可欠です。是非、習得なさってください。
 
@@ -136,35 +137,35 @@ JavaScriptに標準で備わっている乱数からは、@<code>{0} から @<co
 
 //list[][]{
 // 乱数を利用して、コンピュータの手を無作為に決定する
-computer = rand(0, 2);
+computer = rand(0, 2)
 //}
 
 ですので、乱数で選ばれた画像ファイル名は、次のようになります。
 
 //list[][]{
-const image_filename = images[computer];
+const image_filename = images[computer]
 //}
 
 よって、以下のように書くことで、画像ファイルを都度都度変更することができます。
 
 //list[][]{
-img.src = image_filename;
+img.src = image_filename
 //}
 
 つまり、一行ずつ分けて書くと次のようなコードになります。
 //list[][一行ずつ分けて書いたコード]{
-  computer             = rand(0, 2);
-  images               = ["guu.png", "choki.png", "paa.png"];
-  const image_filename = images[computer];
-  img                  = document.getElementById('computer_hand_type');
-  img.src              = image_filename;
+  computer             = rand(0, 2)
+  images               = ["guu.png", "choki.png", "paa.png"]
+  const image_filename = images[computer]
+  img                  = document.getElementById('computer_hand_type')
+  img.src              = image_filename
 //}
 
 これを、それぞれの変数に代入するのではなく、まとめて書くと次のようになります。
 //list[][まとめて書いたコード]{
-computer = rand(0, 2);
+computer = rand(0, 2)
 document.getElementById('computer_hand_type').src =
-         ["guu.png", "choki.png", "paa.png"][computer];
+         ["guu.png", "choki.png", "paa.png"][computer]
 //}
 
 ご自身の分かりやすいと感じる書き方で、実践してみてください。
@@ -187,27 +188,27 @@ fpsとは、動画のなめらかさを表す単位の一つで、画像や画�
 
 //list[][]{
 setTimeout(タイマーが満了した後に実行したい関数,
-           指定した関数を実行する前に待つ時間をミリ秒単位で指定);
+           指定した関数を実行する前に待つ時間をミリ秒単位で指定)
 //}
 
 関数名は、 @<code>{animation} や @<code>{changeComputerHand} も良いでしょう。そしてここでは、アニメーション機能がこのじゃんけんプログラムの主となる機能であることから、 @<code>{main} @<fn>{fn-101}という関数名にします。すると、次のように書けます。
 //footnote[fn-101][JavaScriptはプログラムは上から順に実行されますが、C言語やJavaではmain関数から始まります。]
 
 //list[][]{
-setTimeout(main, 41);
+setTimeout(main, 41)
 //}
 
 @<code>{41}ミリ秒ごとに一回ですから、@<code>{1000}ミリ秒ごとに、@<code>{24}回、じゃんけんの絵が入れ替わることになります。
 そして、@<code>{41}と書くと、意味が分かりにくいので、 @<code>{FPS}という定数を定義しましょう。@<code>{FPS} は、@<code>{Frame Per Second} の略で、「一秒間あたり、何コマ（フレーム）を表示するか？」の意味です。
 
 //list[][]{
-const FPS   = 24; // 一秒間あたり、24コマ表示する
+const FPS   = 24 // 一秒間あたり、24コマ表示する
 //}
 
 この @<code>{FPS}を使って、次のように書き直してみましょう。
 
 //list[][]{
-setTimeout(main, 1000 / FPS);
+setTimeout(main, 1000 / FPS)
 //}
 
 意味も明確になりますし、毎秒 @<code>{60} コマのフレームレートに変更したければ、一箇所、更新するだけですみますので、保守性も上がります。
@@ -232,11 +233,11 @@ let isPause = true;
 // グー・チョキ・パーの切替アニメを表示させる関数
 function main(){
   if(!isPause){ // 停止中でなければ
-    computer = rand(0, 2);
-    document.getElementById('computer_hand_type').src =
-            ["guu.png", "choki.png", "paa.png"][computer];
+    computer = rand(0, 2)
+    document.getElementById("computer_hand_type").src =
+            ["guu.png", "choki.png", "paa.png"][computer]
   }
-  setTimeout(main, 1000 / FPS);
+  setTimeout(main, 1000 / FPS)
 }
 //}
 
@@ -258,18 +259,18 @@ if 文の中の条件式には、真偽値を直接書くこともできます�
 //list[][]{
 // グー・チョキ・パーの切替アニメを制御するための変数
 // trueなら、アニメーション停止
-let isPause = true;
+let isPause = true
 //}
 
 //list[][]{
 // 切替アニメを停止し、もう一度、じゃんけんを行います
 function pause(){
-  isPause = true;
+  isPause = true
 }
 
 // 切替アニメを再開し、もう一度、じゃんけんを行います
 function resume(){
-  isPause = false;
+  isPause = false
 }
 //}
 
@@ -289,15 +290,15 @@ function resume(){
 //list[][]{
 // 勝敗に応じ、メッセージ表示＆勝敗更新
 if (result === DRAW) {
-  alert('引き分けです!');
+  alert("引き分けです!")
 } else if (result === LOSE) {
-  alert('あなたの負けです!');
+  alert("あなたの負けです!")
   // 敗数を一つ増やす
-  updateScore(LOSE);
+  updateScore(LOSE)
 } else {
-  alert('あなたの勝ちです!');
+  alert("あなたの勝ちです!")
   // 勝数を一つ増やす
-  updateScore(WIN);
+  updateScore(WIN)
 }
 //}
 
@@ -315,9 +316,9 @@ JavaScriptで扱いやすいよう、ID属性を付与したので、 @<code>{do
  0  +  1  // =>   1  と、数値演算が行われます。
 //}
 
-ですので、 @<code>{parseInt関数} を用いて、文字列としての @<code>{"0"} を解析(parse)し、整数値としての @<code>{0} を得ます。整数値としての @<code>{0} を得ることができましたから、「@<code>{+ 1}」と足し算することで、勝ち数を一つ増やせます。
+ですので、 @<code>{Number関数} を用いて、文字列としての @<code>{"0"} を与えて、整数値としての @<code>{0} を得ます。整数値としての @<code>{0} を得ることができましたから、「@<code>{+ 1}」と足し算することで、勝ち数を一つ増やせます。
 
-@<code>{win.innerText = 1} と書くことで、@<code>{<span id="win">0</span>}  と書かれていた HTML をを JavaScript から @<code>{<span id="win">1</span>}  のように更新できます。
+@<code>{win.innerText = 1} とJavaScriptを書くと、@<code>{<span id="win">0</span>} と書かれていた元々のHTMLを @<code>{<span id="win">1</span>} へと更新できます。
 
 以上をまとめると @<code>{updateScore関数} は 次のようになります。
 
@@ -325,13 +326,13 @@ JavaScriptで扱いやすいよう、ID属性を付与したので、 @<code>{do
 // 勝敗更新処理
 function updateScore(result) {
   // 要素を取得
-  const win  = document.getElementById("win");
-  const lose = document.getElementById("lose");
+  const win  = document.getElementById("win")
+  const lose = document.getElementById("lose")
 
   if (result === WIN) { // 勝ちの場合
-    win.innerText = parseInt(win.textContent) + 1;
+    win.innerText = parseInt(win.textContent) + 1
   } else if (result === LOSE) { // 負けの場合
-    lose.innerText = parseInt(lose.textContent) + 1;
+    lose.innerText = parseInt(lose.textContent) + 1
   }
 }
 //}
@@ -357,23 +358,23 @@ function updateScore(result) {
 #@#   ドラッグ＆ドロップで簡単に、作ったウェブサイトを24時間公開できます。
 #@# //}
 
-//clearpage
-===[column] 日本最初のホームページ @<fn>{first}
-　
-//sideimage[firstmap][80mm][sep=5mm]{
-日本最初のホームページは、平成4年9月30日に茨城県つくば市にある文部科学省高エネルギー加速器研究機構 計算科学センターの森田洋平博士によって発信されました。左のサーバー世界地図は、ティム博士の論文からのものです。
-//}
-//vspace[latex][2mm]
-
-//blankline
-//sideimage[first_website][80mm][sep=5mm]{
-当時、世界にあったサーバーの位置が記されており日本の部分には、KEKと記されています。
-//blankline
-ソースコードには、@<code>{<HTML>}や @<code>{<BODY>} といったタグはなく、タグが大文字で書かれているのも時代を感じます。
-//}
+#@# //clearpage
+#@# ===[column] 日本最初のホームページ @<fn>{first}
+#@#
+#@# //sideimage[firstmap][80mm][sep=5mm]{
+#@# 日本最初のホームページは、平成4年9月30日に茨城県つくば市にある文部科学省高エネルギー加速器研究機構 計算科学センターの森田洋平博士によって発信されました。左のサーバー世界地図は、ティム博士の論文からのものです。
+#@# //}
 #@# //vspace[latex][2mm]
-
-
-//footnote[first][@<href>{http://www.ibarakiken.gr.jp/www/, 日本最初のホームページ} よりのご紹介です。]
-
-//image[source_color][][width=100%]
+#@#
+#@# //blankline
+#@# //sideimage[first_website][80mm][sep=5mm]{
+#@# 当時、世界にあったサーバーの位置が記されており日本の部分には、KEKと記されています。
+#@# //blankline
+#@# ソースコードには、@<code>{<HTML>}や @<code>{<BODY>} といったタグはなく、タグが大文字で書かれているのも時代を感じます。
+#@# //}
+#@# #@# //vspace[latex][2mm]
+#@#
+#@#
+#@# //footnote[first][@<href>{http://www.ibarakiken.gr.jp/www/, 日本最初のホームページ} よりのご紹介です。]
+#@#
+#@# //image[source_color][][width=100%]

@@ -1,7 +1,7 @@
 = HTML / CSS / JavaScript 簡易まとめ
 
 //abstract{
-  HTML / CSS / JavaScript に関する簡易なまとめです。タグを使用して作成されるHTML要素を一覧表示しています。考えているものを見つけやすいように、機能別にグループ化しています。
+  HTML / CSS / JavaScript に関する簡易なまとめです。タグを使用して作成されるHTML要素を一覧表示しています。見つけやすいように、機能別にグループ化しています。
 //blankline
   @<href>{https://developer.mozilla.org/ja/docs/Web/HTML/Element, HTML 要素リファレンス}より、抄訳しております。引用元にはより詳細な解説や使用例等が掲載されておりますので、是非ご活用下さい。
 //}
@@ -353,9 +353,7 @@ CSSには、100以上ものプロパティがあり、そしてそれぞれの�
 //clearpage
 == JavaScript 簡易まとめ
 
-JavaScriptは、主にブラウザで用いられるプログラミング言語で、動的なサイトの作成に用います。
-
-@<fn>{jsp}
+JavaScriptは、主にブラウザ上で動くプログラミング言語で、動的サイトの作成に用います。@<fn>{jsp}
 //footnote[jsp][出典：@<href>{https://jsprimer.net, JavaScript Primer 迷わないための入門書}など]
 
 === コメント
@@ -433,6 +431,29 @@ JavaScriptでは、定数宣言用の「@<code>{const}」と、変数宣言用�
 @<code>{`${x\}`}	テンプレート文字列リテラル中の変数@<code>{x}の値を展開する
 //}
 
+=== 制御構造
+プログラムの流れを制御するための構文です。
+繰り返しのための「 @<code>{for文} 」、条件分岐のための「 @<code>{if文} 」などが用意されています。
+
+//vspace[latex][7mm]
+
+//table[][]{
+例	説明
+-----------------
+@<code>{while(x){\}}	@<B>{whileループ}。 @<br>{}@<code>{x}が@<code>{true}なら反復処理を行う。 @<br>{}繰返回数が不明な際に用いると効果的
+@<code>{for(let x=0;x < y ;x++){\}}	@<B>{forループ}。 @<br>{}@<code>{x < y}が@<code>{true}なら反復処理を行う。 @<br>{}繰返回数が分かる時に使うと効果的
+@<code>{for(const p in o){\}}	@<B>{for...inループ}。 @<br>{}オブジェクト（@<code>{o}）のプロパティ(@<code>{p}) @<br>{}に対して反復処理を行う
+@<code>{for(const x of iter){\}}	@<B>{for...ofループ}。 @<br>{}イテレータ(@<code>{iter})の反復処理を行う
+@<code>{if(x){/*A*/\}else{/*B*/\}}	@<B>{条件式}。 @<br>{}@<code>{x}が@<code>{true}ならAの処理を、 @<br>{}それ以外ならBの処理を行う
+@<code>{switch(x){case "A":{/*A*/\} "B":{/*B*/\}\}}	@<B>{switch文}。 @<br>{}@<code>{x}が@<code>{"A"}ならAの処理を、 @<br>{}"B"ならBの処理を行う
+@<code>{x ? A: B}	@<B>{条件 （三項） 演算子}。 @<br>{}@<code>{x}が@<code>{true}なら@<code>{A}の処理を、 @<br>{}それ以外なら@<code>{B}の処理を行う
+@<code>{break}	@<B>{break文}。 @<br>{}現在の反復処理を終了しループから抜け出す。
+@<code>{continue}	@<B>{continue文}。 @<br>{}現在の反復処理を終了し次のループに行く。
+@<code>{try{\}catch(e){\}finally{\}}	@<code>{try...catch}構文
+@<code>{throw new Error("xxx")}	@<code>{throw}文
+//}
+
+//clearpage
 
 === 演算子
 //quote{
@@ -484,27 +505,6 @@ JavaScriptでは、定数宣言用の「@<code>{const}」と、変数宣言用�
 
 //clearpage
 
-=== 制御構造
-プログラムの流れを制御するための構文です。
-繰り返しのための「 @<code>{for文} 」、条件分岐のための「 @<code>{if文} 」などが用意されています。
-
-//vspace[latex][7mm]
-
-//table[][]{
-例	説明
------------------
-@<code>{while(x){\}}	@<B>{whileループ}。 @<br>{}@<code>{x}が@<code>{true}なら反復処理を行う。 @<br>{}繰返回数が不明な際に用いると効果的
-@<code>{for(let x=0;x < y ;x++){\}}	@<B>{forループ}。 @<br>{}@<code>{x < y}が@<code>{true}なら反復処理を行う。 @<br>{}繰返回数が分かる時に使うと効果的
-@<code>{for(const p in o){\}}	@<B>{for...inループ}。 @<br>{}オブジェクト（@<code>{o}）のプロパティ(@<code>{p}) @<br>{}に対して反復処理を行う
-@<code>{for(const x of iter){\}}	@<B>{for...ofループ}。 @<br>{}イテレータ(@<code>{iter})の反復処理を行う
-@<code>{if(x){/*A*/\}else{/*B*/\}}	@<B>{条件式}。 @<br>{}@<code>{x}が@<code>{true}ならAの処理を、 @<br>{}それ以外ならBの処理を行う
-@<code>{switch(x){case "A":{/*A*/\} "B":{/*B*/\}\}}	@<B>{switch文}。 @<br>{}@<code>{x}が@<code>{"A"}ならAの処理を、 @<br>{}"B"ならBの処理を行う
-@<code>{x ? A: B}	@<B>{条件 （三項） 演算子}。 @<br>{}@<code>{x}が@<code>{true}なら@<code>{A}の処理を、 @<br>{}それ以外なら@<code>{B}の処理を行う
-@<code>{break}	@<B>{break文}。 @<br>{}現在の反復処理を終了しループから抜け出す。
-@<code>{continue}	@<B>{continue文}。 @<br>{}現在の反復処理を終了し次のループに行く。
-@<code>{try{\}catch(e){\}finally{\}}	@<code>{try...catch}構文
-@<code>{throw new Error("xxx")}	@<code>{throw}文
-//}
 
 === データアクセス
 プログラミング言語 Pascal の開発者 ニクラウス・ヴィルト氏による、
